@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNY</title>
+    <!-- CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Nunito", serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #21D4FD;
+            background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .box {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            border-radius: 15px; /* มุมโค้งมน */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+        }
+
+        .cover, .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+        }
+
+        .cover {
+            background-color: #fceabb; /* สีพื้นหลังอ่อน */
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* เงาให้ดูลึกขึ้น */
+            cursor: pointer;
+        }
+
+        .cover h1 {
+            font-size: 3em;
+            text-align: center;
+            text-transform: uppercase;
+            color: black;
+            letter-spacing: 2px;
+        }
+
+        .content {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #a9ab91;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* เงา */
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .content p {
+            font-size: 1.7em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .content h1, .content p {
+            color: #2f4f4f;
+            animation: bounceText 2s ease infinite;
+        }
+
+        @keyframes bounceText {
+            0% { transform: translateY(0); }
+            30% { transform: translateY(-20px); }
+            50% { transform: translateY(0); }
+            70% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .cover h1 {
+            animation: fadeText 2s ease infinite;
+        }
+        
+        @keyframes fadeText {
+            0% { opacity: 20%; }
+            50% { opacity: 100%; }
+            100% { opacity: 20%; }
+        }
+
+        /* Active state */
+        .cover.active {
+            transform: translateY(-150px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
+        }
+
+        .content.active {
+            transform: translateY(150px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="cover" id="toggle">
+            <h1>Click or Touch</h1>
+        </div>
+        
+        <div class="content">
+            <h1>Happy New Year 2025</h1>
+            <p>May happiness be with you!</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const cover = document.querySelector('.cover');
+        const content = document.querySelector('.content');
+        const button = document.getElementById('toggle');
+
+        button.addEventListener('click', function() {
+            cover.classList.toggle('active');
+            content.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
