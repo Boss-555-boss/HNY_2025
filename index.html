@@ -114,6 +114,25 @@
             transform: translateY(150px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
         }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 9px;
+            }
+            .box {
+                width: 350px;
+                height: 150px;
+            }
+
+            .cover.active {
+                transform: translateY(-75px);
+            }
+
+            .content.active {
+                transform: translateY(75px);
+            }
+        }
     </style>
 </head>
 <body>
