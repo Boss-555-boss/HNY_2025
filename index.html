@@ -16,8 +16,9 @@
         }
 
         body {
-            background-color: #21D4FD;
-            background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background: #232526;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -104,7 +105,60 @@
             100% { opacity: 20%; }
         }
 
-        /* Active state */
+        /* Active state */       
+        .firework.active, 
+        .firework.active::before,
+        .firework.active::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1vmin;
+            aspect-ratio: 1;
+            background:
+                radial-gradient(circle, #ff0000 0.2vmin, #0000 0) 50% 00%, /* สีแดง */
+                radial-gradient(circle, #00ff00 0.3vmin, #0000 0) 00% 50%, /* สีเขียว */
+                radial-gradient(circle, #0000ff 0.5vmin, #0000 0) 50% 99%, /* สีน้ำเงิน */
+                radial-gradient(circle, #ff00ff 0.2vmin, #0000 0) 99% 50%, /* สีชมพู */
+                radial-gradient(circle, #ffff00 0.3vmin, #0000 0) 80% 90%, /* สีเหลือง */
+                radial-gradient(circle, #00ffff 0.5vmin, #0000 0) 95% 90%, /* สีฟ้า */
+                radial-gradient(circle, #ffa500 0.5vmin, #0000 0) 10% 60%, /* สีส้ม */
+                radial-gradient(circle, #800080 0.2vmin, #0000 0) 31% 80%, /* สีม่วง */
+                radial-gradient(circle, #ff1493 0.3vmin, #0000 0) 80% 10%, /* สีชมพูสด */
+                radial-gradient(circle, #8a2be2 0.2vmin, #0000 0) 90% 23%, /* สีม่วงน้ำเงิน */
+                radial-gradient(circle, #7cfc00 0.3vmin, #0000 0) 45% 20%, /* สีเขียวนีออน */
+                radial-gradient(circle, #dc143c 0.5vmin, #0000 0) 13% 24% /* สีแดงเข้ม */
+            ;
+            background-size: 1vmin 1vmin;
+            background-repeat: no-repeat;
+            animation: firework 2s infinite;
+        }
+
+        .firework.active::before {
+            transform: translate(-50%, -50%) rotate(25deg) !important; 
+        }
+
+        .firework.active::after {
+            transform: translate(-50%, -50%) rotate(-37deg) !important;
+        }
+
+        @keyframes firework {
+            0% { 
+                transform: translate(-50%, 60vh);
+                width: 1vmin;
+                opacity: 1;
+            }
+            50% { 
+                width: 1vmin;
+                opacity: 1;
+            }
+            100% { 
+                width: 55vmin; 
+                opacity: 0; 
+            }
+        }
+
         .cover.active {
             transform: translateY(-150px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
@@ -147,15 +201,29 @@
         </div>
     </div>
 
+    <div class="firework" style="top: 50%; left: 100px;"></div>
+    <div class="firework" style="top: 60%; left: 250px;"></div>
+    <div class="firework" style="top: 20%; left: 450px;"></div>
+    <div class="firework" style="top: 80%; left: 650px;"></div>
+    <div class="firework" style="top: 70%; left: 900px;"></div>
+    <div class="firework" style="top: 40%; left: 1200px;"></div>
+    <div class="firework" style="top: 30%; left: 1300px;"></div>
+    <div class="firework" style="top: 55%; left: 1400px;"></div>
+
     <!-- JavaScript -->
     <script>
         const cover = document.querySelector('.cover');
         const content = document.querySelector('.content');
+        const fireworks = document.querySelectorAll('.firework');
         const button = document.getElementById('toggle');
 
         button.addEventListener('click', function() {
             cover.classList.toggle('active');
             content.classList.toggle('active');
+
+            fireworks.forEach(firework => {
+                firework.classList.add('active');
+            });
         });
     </script>
 </body>
